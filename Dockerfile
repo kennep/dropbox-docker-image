@@ -1,15 +1,13 @@
-FROM debian:buster
-MAINTAINER Kenneth Wang Pedersen <kenneth@wangpedersen.com>
+FROM debian:bullseye
+LABEL org.opencontainers.image.authors="Kenneth Wang Pedersen <kenneth@wangpedersen.com>"
 ARG DEBIAN_FRONTEND=noninteractive
 
-COPY dropbox_2019.02.14_amd64.deb /tmp/dropbox.deb
+COPY dropbox_2020.03.04_amd64.deb /tmp/dropbox.deb
 
 RUN apt-get -qqy update \
 	&& apt-get install -qqy /tmp/dropbox.deb \
-        && apt-get install -qqy gnupg \
-        && apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-keys FC918B335044912E \
-        # Note 'ca-certificates' dependency is required for 'dropbox start -i' to succeed
-	&& apt-get -qqy install ca-certificates curl dropbox python3-gpg \
+    # Note 'ca-certificates' dependency is required for 'dropbox start -i' to succeed
+	&& apt-get -qqy install gnupg2 ca-certificates curl dropbox python3-gpg \
            libatomic1 libglapi-mesa libxcb-glx0 libxcb-dri2-0 libxcb-dri3-0 libxcb-present0 libxcb-sync1 libxshmfence1 libxxf86vm1 \
            expect \
 	# Perform image clean up.
