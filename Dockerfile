@@ -1,8 +1,8 @@
-FROM debian:bullseye
+FROM debian:bookworm
 LABEL org.opencontainers.image.authors="Kenneth Wang Pedersen <kenneth@wangpedersen.com>"
 ARG DEBIAN_FRONTEND=noninteractive
 
-COPY dropbox_2020.03.04_amd64.deb /tmp/dropbox.deb
+COPY dropbox_2022.12.05_amd64.deb /tmp/dropbox.deb
 
 RUN apt-get -qqy update \
 	&& apt-get install -qqy /tmp/dropbox.deb \
