@@ -21,7 +21,7 @@ RUN apt-get -qqy update \
 # start -i'. So we switch to 'dropbox' user temporarily and let it do its thing.
 USER dropbox
 RUN mkdir -p /dbox/.dropbox /dbox/.dropbox-dist /dbox/Dropbox /dbox/base \
-	&& expect -c 'set timeout 300; spawn dropbox start -i; expect "download the proprietary daemon"; send "y\n"; expect "Done!"; exit'
+	&& expect -c 'set timeout 300; spawn dropbox start -i; expect "download the proprietary daemon"; send "y\n"; expect "Done!"; exit #t1'
 
 # Switch back to root, since the run script needs root privs to chmod to the user's preferrred UID
 USER root
